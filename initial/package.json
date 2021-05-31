@@ -1,0 +1,33 @@
+{
+  "name": "loading-attribute-polyfill-with-serviceworker",
+  "version": "0.0.1",
+  "description": "Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute supported by a ServiceWorker.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker.git"
+  },
+  "author": "Maximilian Franzke",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "lazy loading",
+    "native lazy loading",
+    "img",
+    "image",
+    "iframe",
+    "polyfill",
+    "web development",
+    "javascript",
+    "html",
+    "serviceworker"
+  ],
+  "bugs": {
+    "url": "https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/issues"
+  },
+  "homepage": "https://mfranzke.github.io/loading-attribute-polyfill-with-serviceworker/demo/",
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "exit 0"
+  }
+}
