@@ -1,4 +1,4 @@
-# loading="lazy" attribute polyfill with serviceworker
+# loading="lazy" attribute polyfill with Service Worker
 Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute, depending on ServiceWorker
 
 [![MIT license](https://img.shields.io/npm/l/loading-attribute-polyfill-with-serviceworker.svg "license badge")](https://opensource.org/licenses/mit-license.php)
