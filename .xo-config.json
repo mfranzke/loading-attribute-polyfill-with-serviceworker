@@ -1,4 +1,4 @@
 {
 	"envs": ["browser"],
-	"prettier": true,
+	"prettier": true
 }
