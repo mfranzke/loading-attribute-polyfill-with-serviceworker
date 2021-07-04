@@ -2,11 +2,11 @@
   "name": "loading-attribute-polyfill-with-serviceworker",
   "version": "0.0.1",
   "description": "Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute supported by a ServiceWorker.",
-  "source": "./src/loading-attribute-polyfill-with-serviceworker.js",
-  "main": "./dist/loading-attribute-polyfill-with-serviceworker.js",
-  "esmodule": "./dist/loading-attribute-polyfill-with-serviceworker.modern.js",
-  "module": "./dist/loading-attribute-polyfill-with-serviceworker.module.js",
-  "umd:main": "./dist/loading-attribute-polyfill-with-serviceworker.umd.js",
+  "source": "./src/loading-attribute-polyfill.js",
+  "main": "./dist/loading-attribute-polyfill.js",
+  "esmodule": "./dist/loading-attribute-polyfill.modern.js",
+  "module": "./dist/loading-attribute-polyfill.module.js",
+  "umd:main": "./dist/loading-attribute-polyfill.umd.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker.git"
@@ -48,7 +48,7 @@
   },
   "scripts": {
     "test": "run-p validate:* lint:*",
-    "lint:xo": "xo src/loading-attribute-polyfill-with-serviceworker.js",
+    "lint:xo": "xo src/loading-attribute-polyfill.js",
     "validate:html": "html-validate demo/index.html",
     "test:wdio": "wdio run webdriverio-tests/wdio.conf-crossbrowsertesting.js",
     "build": "microbundle",
