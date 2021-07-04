@@ -132,15 +132,13 @@
 
 		<main>
 			<!-- Lazy-load an offscreen image when the user scrolls near it -->
-			<noscript class="loading-lazy">
-				<img
-					src="img/lazyimg-src-loadinglazy.250x150.guetzli.jpg"
-					loading="lazy"
-					alt=""
-					width="250"
-					height="150"
-				/>
-			</noscript>
+			<img
+				src="img/lazyimg-src-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150"
+				loading="lazy"
+				alt=""
+				width="250"
+				height="150"
+			/>
 
 			<!-- Load an image right away instead of lazy-loading -->
 			<img
@@ -152,58 +150,52 @@
 			/>
 
 			<!-- Lazy-load images in <picture> -->
-			<noscript class="loading-lazy">
-				<picture>
-					<source
-						media="(min-width: 40em)"
-						srcset="
-							img/lazypicture-media1x-loadinglazy.250x150.guetzli.jpg 1x,
-							img/lazypicture-media2x-loadinglazy.500x300.guetzli.jpg 2x
-						"
-					/>
-					<source
-						srcset="
-							img/lazypicture-1x-loadinglazy.250x150.guetzli.jpg 1x,
-							img/lazypicture-2x-loadinglazy.500x300.guetzli.jpg 2x
-						"
-					/>
-					<img
-						src="img/lazypicture-imgsrc-loadinglazy.250x150.guetzli.jpg"
-						loading="lazy"
-						alt=""
-						width="250"
-						height="150"
-					/>
-				</picture>
-			</noscript>
-
-			<!-- Lazy-load an image that has srcset specified -->
-			<noscript class="loading-lazy">
-				<img
-					src="img/lazyimg-src-loadinglazy.250x150.guetzli.jpg"
+			<picture>
+				<source
+					media="(min-width: 40em)"
 					srcset="
-						img/lazyimg-srcset1024w-loadinglazy.1024x614.guetzli.jpg 1024w,
-						img/lazyimg-srcset640w-loadinglazy.640x384.guetzli.jpg    640w,
-						img/lazyimg-srcset320w-loadinglazy.320x192.guetzli.jpg    320w
+						img/lazypicture-media1x-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150 1x,
+						img/lazypicture-media2x-loadinglazy.500x300.guetzli.jpg?loading=lazy&image-width=500&image-height=300 2x
 					"
-					sizes="(min-width: 36em) 33.3vw, 100vw"
-					alt=""
+				/>
+				<source
+					srcset="
+						img/lazypicture-1x-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150 1x,
+						img/lazypicture-2x-loadinglazy.500x300.guetzli.jpg?loading=lazy&image-width=500&image-height=300 2x
+					"
+				/>
+				<img
+					src="img/lazypicture-imgsrc-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150"
 					loading="lazy"
+					alt=""
 					width="250"
 					height="150"
 				/>
-			</noscript>
+			</picture>
+
+			<!-- Lazy-load an image that has srcset specified -->
+			<img
+				src="img/lazyimg-src-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150"
+				srcset="
+					img/lazyimg-srcset1024w-loadinglazy.1024x614.guetzli.jpg?loading=lazy&image-width=1024&image-height=614 1024w,
+					img/lazyimg-srcset640w-loadinglazy.640x384.guetzli.jpg?loading=lazy&image-width=640&image-height=384     640w,
+					img/lazyimg-srcset320w-loadinglazy.320x192.guetzli.jpg?loading=lazy&image-width=320&image-height=192     320w
+				"
+				sizes="(min-width: 36em) 33.3vw, 100vw"
+				alt=""
+				loading="lazy"
+				width="250"
+				height="150"
+			/>
 
 			<!-- Lazy-load an offscreen iframe when the user scrolls near it -->
-			<noscript class="loading-lazy">
-				<iframe
-					src="iframe.html"
-					width="320"
-					height="180"
-					loading="lazy"
-					title="sample document"
-				></iframe>
-			</noscript>
+			<iframe
+				src="iframe.html?loading=lazy"
+				width="320"
+				height="180"
+				loading="lazy"
+				title="sample document"
+			></iframe>
 
 			<h2>dynamic images</h2>
 			<p>
