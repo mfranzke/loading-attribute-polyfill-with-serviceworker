@@ -50,34 +50,13 @@
 		<link rel="stylesheet" href="../dist/loading-attribute-polyfill.css" />
 		<script>
 			if ("serviceWorker" in navigator) {
-				let supports = "loading" in HTMLImageElement.prototype ? "images" : "";
-
-				if ("loading" in HTMLIFrameElement.prototype) {
-					supports = supports === "images" ? "both" : "iframes";
-				} else {
-					if (supports !== "images") {
-						supports = "none";
-					}
-				}
-
 				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
-				switch (supports) {
-					case "images":
-						navigator.serviceWorker.register(
-							"../loading-attribute-polyfill.iframes.sw.js"
-						);
-						break;
-					case "iframes":
-						navigator.serviceWorker.register(
-							"../loading-attribute-polyfill.images.sw.js"
-						);
-						break;
-					case "none":
-						navigator.serviceWorker.register(
-							"../loading-attribute-polyfill.images-and-iframes.sw.js"
-						);
-						break;
-				}
+				navigator.serviceWorker.register(
+					"/loading-attribute-polyfill.sw.js?loading-images=" +
+						("loading" in HTMLImageElement.prototype) +
+						"&loading-iframes=" +
+						("loading" in HTMLIFrameElement.prototype)
+				);
 			}
 		</script>
 	</head>
