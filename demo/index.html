@@ -48,17 +48,6 @@
 			}
 		</style>
 		<link rel="stylesheet" href="../dist/loading-attribute-polyfill.css" />
-		<script>
-			if ("serviceWorker" in navigator) {
-				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
-				navigator.serviceWorker.register(
-					"/loading-attribute-polyfill.sw.js?loading-images=" +
-						("loading" in HTMLImageElement.prototype) +
-						"&loading-iframes=" +
-						("loading" in HTMLIFrameElement.prototype)
-				);
-			}
-		</script>
 	</head>
 	<body>
 		<header>
@@ -219,5 +208,16 @@
 			</button>
 		</main>
 		<script type="module" src="index.js"></script>
+		<script>
+			if ("serviceWorker" in navigator) {
+				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
+				navigator.serviceWorker.register(
+					"/loading-attribute-polyfill.sw.js?loading-images=" +
+						("loading" in HTMLImageElement.prototype) +
+						"&loading-iframes=" +
+						("loading" in HTMLIFrameElement.prototype)
+				);
+			}
+		</script>
 	</body>
 </html>
