@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute supported by a ServiceWorker.",
   "source": "./src/loading-attribute-polyfill.js",
+  "main": "./dist/loading-attribute-polyfill.js",
   "esmodule": "./dist/loading-attribute-polyfill.modern.js",
   "module": "./dist/loading-attribute-polyfill.module.js",
   "umd:main": "./dist/loading-attribute-polyfill.umd.js",
