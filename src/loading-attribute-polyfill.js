@@ -6,11 +6,10 @@
 /*
  * A minimal and dependency-free vanilla JavaScript loading attribute polyfill.
  * Supports standard's functionality and tests for native support upfront.
- * Elsewhere the functionality gets emulated with the support of noscript wrapper tags.
- * Use an IntersectionObserver polyfill in case of IE11 support necessary.
+ * Elsewhere the functionality gets emulated with the support of ServiceWorker.
  */
 
-import './loading-attribute-polyfill-with-serviceworker.css';
+import './loading-attribute-polyfill.css';
 
 const config = {
 	intersectionObserver: {
@@ -47,48 +46,45 @@ if ('IntersectionObserver' in window) {
 }
 
 /**
- * Put the source and srcset back where it belongs - now that the elements content is attached to the document, it will load now
- * @param {Object} lazyItem Current item to be restored after lazy loading.
+ * Remove the URL query parts for the lazy loaded item
+ * @param {String} url The URL to remove the URL query parts from
  */
-function restoreSource(lazyItem) {
-	let srcsetItems = [];
+function removeLazyPolyfillURLParts(url) {
+	let url = new URL(url),
+		params = url.searchParams;
+
+	params.delete('loading');
+	params.delete('image-width');
+	params.delete('image-height');
+
+	return url.href;
+}
+
+/**
+ * Remove the lazy query from the URL - now that the regular elements URL is referenced within the document, it will load now
+ * @param {Object} lazyItem Current item to be referenced after lazy loading.
+ */
+function createRegularReference(lazyItem) {
+	let mediaItems = [lazyItem];
 
 	// Just in case the img is the decendent of a picture element, check for source tags
 	if (lazyItem.parentNode.tagName.toLowerCase() === 'picture') {
-		removePlaceholderSource(lazyItem.parentNode);
-
-		srcsetItems = Array.prototype.slice.call(
+		mediaItems = Array.prototype.slice.call(
 			lazyItem.parentNode.querySelectorAll('source')
 		);
 	}
 
-	srcsetItems.push(lazyItem);
+	mediaItems.push(lazyItem);
 
-	// Not using .dataset within those upfollowing lines of code for polyfill independent compatibility down to IE9
-	srcsetItems.forEach((item) => {
-		if (item.hasAttribute('data-lazy-srcset')) {
-			item.setAttribute('srcset', item.getAttribute('data-lazy-srcset'));
-			item.removeAttribute('data-lazy-srcset'); // Not using delete .dataset here for compatibility down to IE9
+	mediaItems.forEach((item) => {
+
+		if (item.hasAttribute('src')) {
+			item.src = removeLazyPolyfillURLParts(item.src);
 		}
+
+		// Modify the data attribute on the current status
+		item.dataset.loadingLazy = 'loading';
 	});
-
-	lazyItem.setAttribute('src', lazyItem.getAttribute('data-lazy-src'));
-	lazyItem.removeAttribute('data-lazy-src'); // Not using delete .dataset here for compatibility down to IE9
-}
-
-/**
- * Remove the source tag preventing the loading of picture assets
- * @param {Object} lazyItemPicture Current <picture> item to be restored after lazy loading.
- */
-function removePlaceholderSource(lazyItemPicture) {
-	const placeholderSource = lazyItemPicture.querySelector(
-		'source[data-lazy-remove]'
-	);
-
-	if (placeholderSource) {
-		// Preferred .removeChild over .remove here for IE
-		lazyItemPicture.removeChild(placeholderSource);
-	}
 }
 
 /**
@@ -108,7 +104,7 @@ function onIntersection(entries, observer) {
 
 		observer.unobserve(lazyItem);
 
-		restoreSource(lazyItem);
+		createRegularReference(lazyItem);
 	});
 }
 
@@ -125,119 +121,47 @@ function onPrinting() {
 	mediaQueryList.addListener((mql) => {
 		if (mql.matches) {
 			document
-				.querySelectorAll(
-					config.lazyImage +
-						'[data-lazy-src],' +
-						config.lazyIframe +
-						'[data-lazy-src]'
-				)
+				.querySelectorAll(config.lazyImage + ',' + config.lazyIframe)
 				.forEach((lazyItem) => {
-					restoreSource(lazyItem);
+					createRegularReference(lazyItem);
 				});
 		}
 	});
 }
 
 /**
- * Get and prepare the HTML code depending on feature detection for both image as well as iframe,
- * and if not scrolling supported, because it's a Google or Bing Bot
- * @param {String} lazyAreaHtml Noscript inner HTML code that src-urls need to get rewritten
+ * Retrieve the image and iframe 'lazy load' elements and prepare them for display
+ * @param {Object} mediaTag image or iframe HTML tag
  */
-function getAndPrepareHTMLCode(noScriptTag) {
-	// The contents of a <noscript> tag are treated as text to JavaScript
-	let lazyAreaHtml = noScriptTag.textContent || noScriptTag.innerHTML;
-
-	const getImageWidth = lazyAreaHtml.match(/width=['"](\d+)['"]/) || false;
-	const temporaryImageWidth = getImageWidth[1] || 1;
-	const getImageHeight = lazyAreaHtml.match(/height=['"](\d+)['"]/) || false;
-	const temporaryImageHeight = getImageHeight[1] || 1;
-
-	const temporaryImage =
-		'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 ' +
-		temporaryImageWidth +
-		' ' +
-		temporaryImageHeight +
-		'%27%3E%3C/svg%3E';
-
-	// Test for whether it's image or iframe content, their support by the browser and regarding the scrolling capability
+function prepareElement(mediaTag) {
 	if (
-		((/<img/gim.test(lazyAreaHtml) && !capabilities.loading.image) ||
-			(/<iframe/gim.test(lazyAreaHtml) && !capabilities.loading.iframe)) &&
-		capabilities.scrolling
+		((mediaTag.tagName?.toLowerCase() === 'img' ||
+			mediaTag.tagName?.toLowerCase() === 'picture') &&
+			!capabilities.loading.image) ||
+		(mediaTag.tagName?.toLowerCase() === 'iframe' &&
+			!capabilities.loading.iframe)
 	) {
-		// Check for IntersectionObserver support
-		if (typeof intersectionObserver === 'undefined') {
-			// Attach abandonned attribute 'lazyload' to the HTML tags on browsers w/o IntersectionObserver being available
-			lazyAreaHtml = lazyAreaHtml.replace(
-				/(?:\r\n|\r|\n|\t| )src=/g,
-				' lazyload="1" src='
-			);
-		} else {
-			// Temporarily prevent expensive resource loading by inserting a <source> tag pointing to a simple one (data URI)
-			lazyAreaHtml = lazyAreaHtml.replace(
-				'<source',
-				'<source srcset="' +
-					temporaryImage +
-					'" data-lazy-remove="true"></source>\n<source'
-			);
+		if (typeof intersectionObserver !== 'undefined') {
+			const observedElement = mediaTag;
 
-			// Temporarily replace a expensive resource load with a simple one by storing the actual source and srcset for later and point src to a temporary replacement (data URI)
-			lazyAreaHtml = lazyAreaHtml
-				.replace(/(?:\r\n|\r|\n|\t| )srcset=/g, ' data-lazy-srcset=')
-				.replace(
-					/(?:\r\n|\r|\n|\t| )src=/g,
-					' src="' + temporaryImage + '" data-lazy-src='
-				);
-		}
-	}
+			// Modify the data attribute on the current status
+			observedElement.dataset.loadingLazy = 'registered';
 
-	return lazyAreaHtml;
-}
-
-/**
- * Retrieve the elements from the 'lazy load' <noscript> tag and prepare them for display
- * @param {Object} noScriptTag noscript HTML tag that should get initially transformed
- */
-function prepareElement(noScriptTag) {
-	// Sticking the noscript HTML code in the innerHTML of a new <div> tag to 'load' it after creating that <div>
-	const lazyArea = document.createElement('div');
-
-	lazyArea.innerHTML = getAndPrepareHTMLCode(noScriptTag);
-
-	// Move all children out of the element
-	while (lazyArea.firstChild) {
-		const actualChild = lazyArea.firstChild;
-
-		if (
-			capabilities.scrolling &&
-			typeof intersectionObserver !== 'undefined' &&
-			actualChild.tagName &&
-			(((actualChild.tagName.toLowerCase() === 'img' ||
-				actualChild.tagName.toLowerCase() === 'picture') &&
-				!capabilities.loading.image) ||
-				(actualChild.tagName.toLowerCase() === 'iframe' &&
-					!capabilities.loading.iframe))
-		) {
-			const observedElement =
-				actualChild.tagName.toLowerCase() === 'picture'
-					? lazyArea.querySelector('img')
-					: actualChild;
 			// Observe the item so that loading could start when it gets close to the viewport
 			intersectionObserver.observe(observedElement);
+		} else {
+			createRegularReference(mediaTag);
 		}
-
-		noScriptTag.parentNode.insertBefore(actualChild, noScriptTag);
 	}
-
-	// Remove the empty element - not using .remove() here for IE11 compatibility
-	noScriptTag.parentNode.removeChild(noScriptTag);
 }
 
 /**
- * Get all the <noscript> tags on the page, prepare each and any one of them and setup the printing
+ * Get all the img and iframe lazy loading tags on the page, prepare each and any one of them and setup the printing
  */
 const prepareElements = () => {
-	const lazyLoadAreas = document.querySelectorAll('noscript.loading-lazy');
+	const lazyLoadAreas = document.querySelectorAll(
+		config.lazyImage + ',' + config.lazyIframe
+	);
 
 	lazyLoadAreas.forEach((element) => prepareElement(element));
 
