@@ -32,13 +32,10 @@
 				margin: 1rem;
 			}
 			/* dynamically added images */
-			.add-image ~ div {
+			.add-dynamic-content ~ div {
 				min-height: 100vh;
-				position: relative;
-			}
-			.add-image ~ div img {
-				position: absolute;
-				bottom: 0;
+				display: flex;
+				align-items: end;
 			}
 
 			/* Displaying the images on smaller viewports */
@@ -198,16 +195,17 @@
 				title="sample document"
 			></iframe>
 
-			<h2>dynamic images</h2>
+			<h2>dynamic images &amp; iframes</h2>
 			<p>
-				Add <code>div</code> element and image underneath (scroll down after
-				pressing the following button)
+				Add <code>div</code> element and included image and iframe underneath
+				(scroll down after pressing the following button)
 			</p>
-			<button type="button" class="add-image">
-				Add dynamic image underneath
+			<button type="button" class="add-dynamic-content">
+				Add dynamic image and iframe underneath
 			</button>
 		</main>
 		<script type="module" src="index.js"></script>
+		></script>
 		<script>
 			if ("serviceWorker" in navigator) {
 				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
