@@ -47,10 +47,10 @@ if ('IntersectionObserver' in window) {
 
 /**
  * Remove the URL query parts for the lazy loaded item
- * @param {String} url The URL to remove the URL query parts from
+ * @param {String} urlString The URL to remove the URL query parts from
  */
-function removeLazyPolyfillURLParts(url) {
-	let url = new URL(url),
+function removeLazyPolyfillURLParts(urlString) {
+	let url = new URL(urlString),
 		params = url.searchParams;
 
 	params.delete('loading');
