@@ -212,7 +212,7 @@
 			if ("serviceWorker" in navigator) {
 				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
 				navigator.serviceWorker.register(
-					"/loading-attribute-polyfill.sw.js?loading-images=" +
+					"../loading-attribute-polyfill.sw.js?loading-images=" +
 						("loading" in HTMLImageElement.prototype) +
 						"&loading-iframes=" +
 						("loading" in HTMLIFrameElement.prototype)
