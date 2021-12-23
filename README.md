@@ -12,7 +12,7 @@ Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 - Released under the MIT license
 - Made in Germany. And supported by so many great people from all over this planet - see "Credits" accordingly.
-- Compatible down to Microsoft Internet Explorer 17
+- Compatible [down to Microsoft Internet Explorer 17](https://caniuse.com/?search=serviceworker)
 
 ## Features
 
