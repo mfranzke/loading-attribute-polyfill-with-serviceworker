@@ -1,10 +1,10 @@
 self.addEventListener('fetch', (event) => {
-	const requestURLParams = new URL(event.request.url).searchParams,
-		swURLSearchparams = new URL(self.location.href).searchParams;
+	const requestURLParameters = new URL(event.request.url).searchParams;
+	const swURLSearchparams = new URL(self.location.href).searchParams;
 
 	if (
-		requestURLParams.get('loading') &&
-		requestURLParams.get('loading') === 'lazy'
+		requestURLParameters.get('loading') &&
+		requestURLParameters.get('loading') === 'lazy'
 	) {
 		if (event.request.destination === 'iframe') {
 			if (swURLSearchparams.get('loading-iframes') !== 'true') {
@@ -18,9 +18,9 @@ self.addEventListener('fetch', (event) => {
 			event.respondWith(
 				new Response(
 					'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' +
-						requestURLParams.get('image-width') +
+						requestURLParameters.get('image-width') +
 						' ' +
-						requestURLParams.get('image-height') +
+						requestURLParameters.get('image-height') +
 						'"></svg>',
 					{
 						headers: { 'Content-Type': 'image/svg+xml' },
@@ -28,6 +28,7 @@ self.addEventListener('fetch', (event) => {
 				)
 			);
 		}
+
 		return;
 	}
 });
