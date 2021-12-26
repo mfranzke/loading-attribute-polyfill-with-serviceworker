@@ -54,8 +54,8 @@ function removeLazyPolyfillURLParts(urlString) {
 		params = url.searchParams;
 
 	params.delete('loading');
-	params.delete('image-width');
-	params.delete('image-height');
+	params.delete('asset-width');
+	params.delete('asset-height');
 
 	return url.href;
 }
@@ -77,7 +77,6 @@ function createRegularReference(lazyItem) {
 	mediaItems.push(lazyItem);
 
 	mediaItems.forEach((item) => {
-
 		if (item.hasAttribute('src')) {
 			item.src = removeLazyPolyfillURLParts(item.src);
 		}

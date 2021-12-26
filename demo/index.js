@@ -8,14 +8,17 @@ let addDynamicContent = (event) => {
 
 	imageElement.setAttribute(
 		'src',
-		'img/lazyimg-src-loadinglazy.250x150.guetzli.jpg?loading=lazy&image-width=250&image-height=150'
+		'img/lazyimg-src-loadinglazy.250x150.guetzli.jpg?loading=lazy&asset-width=250&asset-height=150'
 	);
 	imageElement.setAttribute('loading', 'lazy');
 	imageElement.setAttribute('alt', '..');
 	imageElement.setAttribute('width', '250');
 	imageElement.setAttribute('height', '150');
 
-	iframeElement.setAttribute('src', 'iframe.html?loading=lazy');
+	iframeElement.setAttribute(
+		'src',
+		'iframe.html?loading=lazy&asset-width=250&asset-height=150'
+	);
 	iframeElement.setAttribute('loading', 'lazy');
 	iframeElement.setAttribute('title', '..');
 	iframeElement.setAttribute('width', '320');
