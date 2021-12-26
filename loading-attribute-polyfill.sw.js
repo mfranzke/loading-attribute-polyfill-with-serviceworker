@@ -18,9 +18,9 @@ self.addEventListener('fetch', (event) => {
 			event.respondWith(
 				new Response(
 					'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' +
-						requestURLParameters.get('image-width') +
+						(requestURLParameters.get('image-width') || '0') +
 						' ' +
-						requestURLParameters.get('image-height') +
+						(requestURLParameters.get('image-height') || '0') +
 						'"></svg>',
 					{
 						headers: { 'Content-Type': 'image/svg+xml' },
