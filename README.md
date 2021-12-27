@@ -68,6 +68,14 @@ And please "Avoid lazy-loading images that are in the first visible viewport", c
 
 See the polyfill in action either by downloading / forking this repo and have a look at `demo/index.html`, or at the hosted demo: <https://mfranzke.github.io/loading-attribute-polyfill-with-serviceworker/demo/>
 
+## Credits
+
+Credits for the initial kickstarter / script to @Sora2455 for better expressing my ideas & concepts and support by @cbirdsong, @eklingen, @DaPo, @nextgenthemes, @diogoterremoto, @dracos, @Flimm, @TomS-, @vinyfc93, @JordanDysart and @denyshutsal. And especially to [@garygreen](https://github.com/garygreen) for coming up with the [great idea to use Service Worker](https://github.com/mfranzke/loading-attribute-polyfill/issues/88#issuecomment-649723103). Thank you very much for that, highly appreciated !
+
+## Tested with
+
+_tbd_
+
 ### Big Thanks
 
 Cross-browser testing platform provided by [CrossBrowserTesting](https://crossbrowsertesting.com)
