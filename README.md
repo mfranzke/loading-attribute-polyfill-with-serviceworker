@@ -1,5 +1,6 @@
 # loading="lazy" attribute polyfill with Service Worker
-Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute, depending on ServiceWorker
+
+Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute, depending on Service Worker (kudos for that [great idea](https://github.com/mfranzke/loading-attribute-polyfill/issues/88#issuecomment-649723103) to [@garygreen](https://github.com/garygreen) !!!)
 
 [![MIT license](https://img.shields.io/npm/l/loading-attribute-polyfill-with-serviceworker.svg "license badge")](https://opensource.org/licenses/mit-license.php)
 [![GitHub Super-Linter](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/actions/workflows/linter.yml)
@@ -10,6 +11,7 @@ Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+
 - Released under the MIT license
 - Made in Germany. And supported by so many great people from all over this planet - see "Credits" accordingly.
 - Compatible [down to Microsoft Internet Explorer 17](https://caniuse.com/?search=serviceworker)
@@ -36,11 +38,18 @@ You may optionally load via NPM or Bower:
 
     $ npm install loading-attribute-polyfill-with-serviceworker
     $ bower install loading-attribute-polyfill-with-serviceworker
+
 Include one of the provided JavaScript files depending on your setup plus the CSS file:
 
 ```html
-<script src="dist/loading-attribute-polyfill-with-serviceworker.js" async></script>
-<link rel="stylesheet" href="dist/loading-attribute-polyfill-with-serviceworker.css" />
+<script
+	src="dist/loading-attribute-polyfill-with-serviceworker.js"
+	async
+></script>
+<link
+	rel="stylesheet"
+	href="dist/loading-attribute-polyfill-with-serviceworker.css"
+/>
 ```
 
 or e.g. within JS
