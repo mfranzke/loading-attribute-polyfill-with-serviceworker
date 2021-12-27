@@ -51,11 +51,11 @@ if ('IntersectionObserver' in window) {
  */
 function removeLazyPolyfillURLParts(urlString) {
 	const url = new URL(urlString);
-	let params = url.searchParams;
+	let parameters = url.searchParams;
 
-	params.delete('loading');
-	params.delete('image-width');
-	params.delete('image-height');
+	parameters.delete('loading');
+	parameters.delete('image-width');
+	parameters.delete('image-height');
 
 	return url.href;
 }
