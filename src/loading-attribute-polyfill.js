@@ -50,7 +50,7 @@ if ('IntersectionObserver' in window) {
  * @param {String} urlString The URL to remove the URL query parts from
  */
 function removeLazyPolyfillURLParts(urlString) {
-	let url = new URL(urlString);
+	const url = new URL(urlString);
 	let params = url.searchParams;
 
 	params.delete('loading');
