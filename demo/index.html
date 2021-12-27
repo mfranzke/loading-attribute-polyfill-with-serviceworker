@@ -45,6 +45,9 @@
 			}
 		</style>
 		<link rel="stylesheet" href="../dist/loading-attribute-polyfill.css" />
+
+		<!-- Include polyfill for custom elements and built-in extends support -->
+		<script src="//unpkg.com/@ungap/custom-elements"></script>
 	</head>
 	<body>
 		<header>
@@ -136,6 +139,7 @@
 				alt=""
 				width="250"
 				height="150"
+				is="loading-image"
 			/>
 
 			<!-- Load an image right away instead of lazy-loading -->
@@ -168,6 +172,7 @@
 					alt=""
 					width="250"
 					height="150"
+					is="loading-image"
 				/>
 			</picture>
 
@@ -184,6 +189,7 @@
 				loading="lazy"
 				width="250"
 				height="150"
+				is="loading-image"
 			/>
 
 			<!-- Lazy-load an offscreen iframe when the user scrolls near it -->
@@ -193,6 +199,7 @@
 				height="180"
 				loading="lazy"
 				title="sample document"
+				is="loading-iframe"
 			></iframe>
 
 			<h2>dynamic images &amp; iframes</h2>
