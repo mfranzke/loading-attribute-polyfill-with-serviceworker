@@ -50,8 +50,8 @@ if ('IntersectionObserver' in window) {
  * @param {String} urlString The URL to remove the URL query parts from
  */
 function removeLazyPolyfillURLParts(urlString) {
-	let url = new URL(urlString),
-		params = url.searchParams;
+	let url = new URL(urlString);
+	let params = url.searchParams;
 
 	params.delete('loading');
 	params.delete('image-width');
@@ -77,7 +77,6 @@ function createRegularReference(lazyItem) {
 	mediaItems.push(lazyItem);
 
 	mediaItems.forEach((item) => {
-
 		if (item.hasAttribute('src')) {
 			item.src = removeLazyPolyfillURLParts(item.src);
 		}
