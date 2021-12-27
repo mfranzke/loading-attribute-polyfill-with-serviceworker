@@ -41,7 +41,6 @@ class LoadingImages extends HTMLImageElement {
 	constructor() {
 		super(); // Always call super() first in the constructor.
 		// Call for preparing the sample image element included the latest
-		console.log('preparing image', this);
 		loadingAttributePolyfill.prepareElement(this);
 	}
 }
@@ -54,7 +53,6 @@ class LoadingIframes extends HTMLIFrameElement {
 	constructor() {
 		super(); // Always call super() first in the constructor.
 		// Call for preparing the sample iframe element included the latest
-		console.log('preparing iframe', this);
 		loadingAttributePolyfill.prepareElement(this);
 	}
 }
