@@ -50,14 +50,10 @@ if ('IntersectionObserver' in window) {
  * @param {String} urlString The URL to remove the URL query parts from
  */
 function removeLazyPolyfillURLParts(urlString) {
-	let url = new URL(urlString),
-		params = url.searchParams;
-
-	params.delete('loading');
-	params.delete('image-width');
-	params.delete('image-height');
-
-	return url.href;
+	return urlString.replace(
+		/(&|&amp;)?(loading=lazy|image-width=\d*|image-height=\d*)/gi,
+		''
+	);
 }
 
 /**
@@ -77,10 +73,11 @@ function createRegularReference(lazyItem) {
 	mediaItems.push(lazyItem);
 
 	mediaItems.forEach((item) => {
-
-		if (item.hasAttribute('src')) {
-			item.src = removeLazyPolyfillURLParts(item.src);
+		if (item.hasAttribute('srcset')) {
+			item.srcset = removeLazyPolyfillURLParts(item.srcset);
 		}
+
+		item.src = removeLazyPolyfillURLParts(item.src);
 
 		// Modify the data attribute on the current status
 		item.dataset.loadingLazy = 'loading';
