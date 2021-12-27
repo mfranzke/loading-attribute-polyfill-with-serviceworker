@@ -14,7 +14,10 @@ self.addEventListener('fetch', (event) => {
 					})
 				);
 			}
-		} else if (swURLSearchparams.get('loading-images') !== 'true') {
+		} else if (
+			event.request.destination === 'image' &&
+			swURLSearchparams.get('loading-images') !== 'true'
+		) {
 			event.respondWith(
 				new Response(
 					'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' +
