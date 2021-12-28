@@ -1,8 +1,8 @@
 // Test for dynamically inserted images and iframes
-let addDynamicContent = (event) => {
-	let divElement = document.createElement('div'),
-		imageElement = document.createElement('img'),
-		iframeElement = document.createElement('iframe');
+const addDynamicContent = (event) => {
+	const divElement = document.createElement('div');
+	const imageElement = document.createElement('img');
+	const iframeElement = document.createElement('iframe');
 
 	imageElement.setAttribute('is', 'loading-image');
 	// We're using a differing string at the end of the query than the regular one embedded directly into the page
@@ -26,8 +26,10 @@ let addDynamicContent = (event) => {
 	iframeElement.setAttribute('width', '320');
 	iframeElement.setAttribute('height', '180');
 
+	/* eslint-disable unicorn/prefer-dom-node-append */
 	divElement.appendChild(imageElement);
 	divElement.appendChild(iframeElement);
+	/* eslint-enable unicorn/prefer-dom-node-append */
 
 	document.querySelector('main').insertAdjacentElement('beforeend', divElement);
 
@@ -39,5 +41,7 @@ document
 	.addEventListener('click', addDynamicContent);
 
 // Importing the two files which show how to register these elements as custom elements builtin extends
-import 'loading-attribute-polyfill.custom-builtin-extend.image.js';
-import 'loading-attribute-polyfill.custom-builtin-extend.iframe.js';
+/* eslint-disable import/no-unassigned-import, import/first */
+import './loading-attribute-polyfill.custom-builtin-extend.image.js';
+import './loading-attribute-polyfill.custom-builtin-extend.iframe.js';
+/* eslint-enable import/no-unassigned-import, import/first */
