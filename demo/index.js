@@ -1,8 +1,8 @@
 // Test for dynamically inserted images and iframes
 const addDynamicContent = (event) => {
-	let divElement = document.createElement('div'),
-		imageElement = document.createElement('img'),
-		iframeElement = document.createElement('iframe');
+	const divElement = document.createElement('div');
+	const imageElement = document.createElement('img');
+	const iframeElement = document.createElement('iframe');
 
 	imageElement.setAttribute('is', 'loading-image');
 	// We're using a differing string at the end of the query than the regular one embedded directly into the page
