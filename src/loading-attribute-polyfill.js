@@ -6,7 +6,7 @@
 /*
  * A minimal and dependency-free vanilla JavaScript loading attribute polyfill.
  * Supports standard's functionality and tests for native support upfront.
- * Elsewhere the functionality gets emulated with the support of ServiceWorker.
+ * Elsewhere the functionality gets emulated with the support of Service Worker.
  */
 
 import './loading-attribute-polyfill.css';
@@ -50,14 +50,10 @@ if ('IntersectionObserver' in window) {
  * @param {String} urlString The URL to remove the URL query parts from
  */
 function removeLazyPolyfillURLParts(urlString) {
-	const url = new URL(urlString);
-	let parameters = url.searchParams;
-
-	parameters.delete('loading');
-	parameters.delete('image-width');
-	parameters.delete('image-height');
-
-	return url.href;
+	return urlString.replace(
+		/(&|&amp;)?(loading=lazy|image-width=\d*|image-height=\d*)/gi,
+		''
+	);
 }
 
 /**
@@ -77,9 +73,11 @@ function createRegularReference(lazyItem) {
 	mediaItems.push(lazyItem);
 
 	mediaItems.forEach((item) => {
-		if (item.hasAttribute('src')) {
-			item.src = removeLazyPolyfillURLParts(item.src);
+		if (item.hasAttribute('srcset')) {
+			item.srcset = removeLazyPolyfillURLParts(item.srcset);
 		}
+
+		item.src = removeLazyPolyfillURLParts(item.src);
 
 		// Modify the data attribute on the current status
 		item.dataset.loadingLazy = 'loading';

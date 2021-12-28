@@ -58,7 +58,7 @@
 			<h1>
 				<a
 					href="https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/"
-					>loading-attribute-polyfill-with-serviceworker</a
+					>loading-attribute polyfill (with Service Worker)</a
 				>
 				demo page
 			</h1>
@@ -97,9 +97,6 @@
 
 			<p class="scrolling-advice">
 				The following whitespace is included as a threshold,
-				<strong>please scroll down to the very end of this demo page</strong> to
-				see these images being loaded by the polyfill on The following
-				whitespace is included as a threshold,
 				<strong>please scroll down to the very end of this demo page</strong> to
 				see these images and iframe content being loaded by the polyfill on
 				<a href="https://caniuse.com/loading-lazy-attr">unsupported browsers</a>
@@ -218,7 +215,7 @@
 		<script type="module" src="index.js"></script>
 		<script>
 			if ("serviceWorker" in navigator) {
-				// Differentiate in between the ServiceWorker scripts for the different browser capabilities / support
+				// Differentiate in between the Service Worker scripts for the different browser capabilities / support
 				navigator.serviceWorker.register(
 					"../loading-attribute-polyfill.sw.js?loading-images=" +
 						("loading" in HTMLImageElement.prototype) +
