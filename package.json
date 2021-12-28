@@ -1,7 +1,7 @@
 {
   "name": "loading-attribute-polyfill-with-serviceworker",
   "version": "0.0.1",
-  "description": "Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute supported by a ServiceWorker.",
+  "description": "Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute supported by a Service Worker.",
   "source": "./src/loading-attribute-polyfill.js",
   "main": "./dist/loading-attribute-polyfill.js",
   "esmodule": "./dist/loading-attribute-polyfill.modern.js",
@@ -24,7 +24,7 @@
     "web development",
     "javascript",
     "html",
-    "serviceworker"
+    "service worker"
   ],
   "bugs": {
     "url": "https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/issues"

@@ -6,7 +6,7 @@
 /*
  * A minimal and dependency-free vanilla JavaScript loading attribute polyfill.
  * Supports standard's functionality and tests for native support upfront.
- * Elsewhere the functionality gets emulated with the support of ServiceWorker.
+ * Elsewhere the functionality gets emulated with the support of Service Worker.
  */
 
 import './loading-attribute-polyfill.css';
