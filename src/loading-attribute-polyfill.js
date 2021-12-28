@@ -138,7 +138,9 @@ function prepareElement(mediaTag) {
 		(mediaTag.tagName?.toLowerCase() === 'iframe' &&
 			!capabilities.loading.iframe)
 	) {
-		if (typeof intersectionObserver !== 'undefined') {
+		if (typeof intersectionObserver === 'undefined') {
+			createRegularReference(mediaTag);
+		} else {
 			const observedElement = mediaTag;
 
 			// Modify the data attribute on the current status
@@ -146,8 +148,6 @@ function prepareElement(mediaTag) {
 
 			// Observe the item so that loading could start when it gets close to the viewport
 			intersectionObserver.observe(observedElement);
-		} else {
-			createRegularReference(mediaTag);
 		}
 	}
 }
