@@ -72,7 +72,7 @@ function createRegularReference(lazyItem) {
 
 	mediaItems.push(lazyItem);
 
-	mediaItems.forEach((item) => {
+	for (const item of mediaItems) {
 		if (item.hasAttribute('srcset')) {
 			item.srcset = removeLazyPolyfillURLParts(item.srcset);
 		}
@@ -81,7 +81,7 @@ function createRegularReference(lazyItem) {
 
 		// Modify the data attribute on the current status
 		item.dataset.loadingLazy = 'loading';
-	});
+	}
 }
 
 /**
@@ -90,10 +90,10 @@ function createRegularReference(lazyItem) {
  * @param {Object} observer IntersectionObserver instance reference
  */
 function onIntersection(entries, observer) {
-	entries.forEach((entry) => {
+	for (const entry of entries) {
 		// Mitigation for EDGE lacking support of .isIntersecting until v15, compare to e.g. https://github.com/w3c/IntersectionObserver/issues/211#issuecomment-309144669
 		if (entry.intersectionRatio === 0) {
-			return;
+			continue;
 		}
 
 		// If the item is visible now, load it and stop watching it
@@ -102,7 +102,7 @@ function onIntersection(entries, observer) {
 		observer.unobserve(lazyItem);
 
 		createRegularReference(lazyItem);
-	});
+	}
 }
 
 /**
@@ -117,11 +117,11 @@ function onPrinting() {
 
 	mediaQueryList.addListener((mql) => {
 		if (mql.matches) {
-			document
-				.querySelectorAll(config.lazyImage + ',' + config.lazyIframe)
-				.forEach((lazyItem) => {
-					createRegularReference(lazyItem);
-				});
+			for (const lazyItem of document.querySelectorAll(
+				config.lazyImage + ',' + config.lazyIframe
+			)) {
+				createRegularReference(lazyItem);
+			}
 		}
 	});
 }
@@ -156,11 +156,11 @@ function prepareElement(mediaTag) {
  * Get all the img and iframe lazy loading tags on the page, prepare each and any one of them and setup the printing
  */
 const prepareElements = () => {
-	const lazyLoadAreas = document.querySelectorAll(
+	for (const element of document.querySelectorAll(
 		config.lazyImage + ',' + config.lazyIframe
-	);
-
-	lazyLoadAreas.forEach((element) => prepareElement(element));
+	)) {
+		prepareElement(element);
+	}
 
 	// Bind for someone printing the page
 	onPrinting();
