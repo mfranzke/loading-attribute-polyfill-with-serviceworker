@@ -26,8 +26,10 @@ const addDynamicContent = (event) => {
 	iframeElement.setAttribute('width', '320');
 	iframeElement.setAttribute('height', '180');
 
+	/* eslint-disable unicorn/prefer-dom-node-append */
 	divElement.appendChild(imageElement);
 	divElement.appendChild(iframeElement);
+	/* eslint-enable unicorn/prefer-dom-node-append */
 
 	document.querySelector('main').insertAdjacentElement('beforeend', divElement);
 
