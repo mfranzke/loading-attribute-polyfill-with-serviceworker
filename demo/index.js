@@ -39,5 +39,7 @@ document
 	.addEventListener('click', addDynamicContent);
 
 // Importing the two files which show how to register these elements as custom elements builtin extends
-import 'loading-attribute-polyfill.custom-builtin-extend.image.js';
-import 'loading-attribute-polyfill.custom-builtin-extend.iframe.js';
+/* eslint-disable import/no-unassigned-import, import/first */
+import './loading-attribute-polyfill.custom-builtin-extend.image.js';
+import './loading-attribute-polyfill.custom-builtin-extend.iframe.js';
+/* eslint-enable import/no-unassigned-import, import/first */
