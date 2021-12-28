@@ -1,5 +1,5 @@
 // Test for dynamically inserted images and iframes
-let addDynamicContent = (event) => {
+const addDynamicContent = (event) => {
 	let divElement = document.createElement('div'),
 		imageElement = document.createElement('img'),
 		iframeElement = document.createElement('iframe');
