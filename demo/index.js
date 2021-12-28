@@ -1,5 +1,3 @@
-import loadingAttributePolyfill from '../dist/loading-attribute-polyfill.module.js';
-
 // Test for dynamically inserted images and iframes
 let addDynamicContent = (event) => {
 	let divElement = document.createElement('div'),
@@ -35,26 +33,6 @@ document
 	.querySelector('button.add-dynamic-content')
 	.addEventListener('click', addDynamicContent);
 
-// See https://html.spec.whatwg.org/multipage/indices.html#element-interfaces
-// for the list of other DOM interfaces.
-class LoadingImages extends HTMLImageElement {
-	constructor() {
-		super(); // Always call super() first in the constructor.
-		// Call for preparing the sample image element included the latest
-		loadingAttributePolyfill.prepareElement(this);
-	}
-}
-
-customElements.define('loading-image', LoadingImages, { extends: 'img' });
-
-// See https://html.spec.whatwg.org/multipage/indices.html#element-interfaces
-// for the list of other DOM interfaces.
-class LoadingIframes extends HTMLIFrameElement {
-	constructor() {
-		super(); // Always call super() first in the constructor.
-		// Call for preparing the sample iframe element included the latest
-		loadingAttributePolyfill.prepareElement(this);
-	}
-}
-
-customElements.define('loading-iframe', LoadingIframes, { extends: 'iframe' });
+// Importing the two files which show how to register these elements as custom elements builtin extends
+import 'loading-attribute-polyfill.custom-builtin-extend.image.js';
+import 'loading-attribute-polyfill.custom-builtin-extend.iframe.js';
