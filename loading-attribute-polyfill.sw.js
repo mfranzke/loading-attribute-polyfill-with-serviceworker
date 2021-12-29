@@ -2,10 +2,7 @@ self.addEventListener('fetch', (event) => {
 	const requestURLParameters = new URL(event.request.url).searchParams;
 	const swURLSearchparams = new URL(self.location.href).searchParams;
 
-	if (
-		requestURLParameters.get('loading') &&
-		requestURLParameters.get('loading') === 'lazy'
-	) {
+	if (requestURLParameters.get('loading') === 'lazy') {
 		if (event.request.destination === 'document') {
 			if (swURLSearchparams.get('loading-iframes') !== 'true') {
 				event.respondWith(
