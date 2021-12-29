@@ -7,3 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 And the commit messages from [Conventional Commits](https://conventionalcommits.org) are being used.
 
 ## [Unreleased]
+
+## [0.1.0] - 2021-12-29
+
+### Added
+
+- General working functionality as a first beta version
