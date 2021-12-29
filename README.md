@@ -42,14 +42,14 @@ You may optionally load via NPM or Bower:
 Include one of the provided JavaScript files depending on your setup plus the CSS file:
 
 ```html
-<script
-	src="dist/loading-attribute-polyfill-with-serviceworker.js"
-	async
-></script>
 <link
 	rel="stylesheet"
 	href="dist/loading-attribute-polyfill-with-serviceworker.css"
 />
+<script
+	src="dist/loading-attribute-polyfill-with-serviceworker.js"
+	async
+></script>
 ```
 
 or e.g. within JS
