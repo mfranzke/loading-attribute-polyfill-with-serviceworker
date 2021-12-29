@@ -58,11 +58,122 @@ or e.g. within JS
 import loadingAttributePolyfill from "node_modules/loading-attribute-polyfill-with-serviceworker/dist/loading-attribute-polyfill-with-serviceworker.module.js";
 ```
 
+Afterwards, you need to add a query to all of your `<img>` (`?loading=lazy&image-width=250&image-height=150`) and `<iframe>` (`?loading=lazy`) HTML tags (in the case of `<picture>` use the complementary `<source>` HTML tags) that you'd like to lazy load. The included `image-width` and `image-height` values should match the `width`- and `height`-attribute values of each asset.
+
 Please keep in mind that it's important to even also include `width` and `height` attributes on `<img>` HTML tags, as the browser could determine the aspect ratio via those two attributes values being set (even if you overwrite them via CSS), compare to the great work by Jen Simmons on this topic, e.g. within these articles <https://css-tricks.com/do-this-to-improve-image-loading-on-your-website/> (with video) or <https://css-tricks.com/what-if-we-got-aspect-ratio-sized-images-by-doing-almost-nothing/>
 
 And please "Avoid lazy-loading images that are in the first visible viewport", compare to [the article "Browser-level image lazy-loading for the web"](https://web.dev/browser-level-image-lazy-loading/#avoid-lazy-loading-images-that-are-in-the-first-visible-viewport) published on web.dev:
 
 > You should avoid setting `loading=lazy` for any images that are in the first visible viewport. It is recommended to only add `loading=lazy` to images which are positioned below the fold, if possible.
+
+### Simple image
+
+```html
+<img
+	src="simpleimage.jpg?loading=lazy&image-width=250&image-height=150"
+	loading="lazy"
+	alt=""
+	width="250"
+	height="150"
+/>
+```
+
+### Image wrapped in a picture tag
+
+```html
+<picture>
+	<source
+		media="(min-width: 40em)"
+		srcset="
+			simpleimage.huge.jpg?loading=lazy&image-width=250&image-height=150    1x,
+			simpleimage.huge.2x.jpg?loading=lazy&image-width=250&image-height=150 2x
+		"
+	/>
+	<source
+		srcset="
+			simpleimage.jpg?loading=lazy&image-width=250&image-height=150    1x,
+			simpleimage.2x.jpg?loading=lazy&image-width=250&image-height=150 2x
+		"
+	/>
+	<img
+		src="simpleimage.jpg?loading=lazy&image-width=250&image-height=150"
+		loading="lazy"
+		alt=".."
+		width="250"
+		height="150"
+	/>
+</picture>
+```
+
+### Image with `srcset`
+
+```html
+<img
+	src="simpleimage.jpg?loading=lazy&image-width=250&image-height=150"
+	srcset="
+		simpleimage.1024.jpg?loading=lazy&image-width=250&image-height=150 1024w,
+		simpleimage.640.jpg?loading=lazy&image-width=250&image-height=150   640w,
+		simpleimage.320.jpg?loading=lazy&image-width=250&image-height=150   320w
+	"
+	sizes="(min-width: 36em) 33.3vw, 100vw"
+	alt="A rad wolf"
+	loading="lazy"
+/>
+```
+
+### Iframe
+
+```html
+<iframe
+	src="iframe.html?loading=lazy"
+	width="320"
+	height="180"
+	loading="lazy"
+></iframe>
+```
+
+## API
+
+In case that you're dynamically adding HTML elements within the browser, you could call the following method with an included [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) object, like e.g.:
+
+```JavaScript
+loadingAttributePolyfill.prepareElement(
+	document.querySelector('main noscript.loading-lazy')
+);
+```
+
+In general we recommend to use the Web Standard of customized builtin elements extends to achieve this, by adding an `is`-attribute to the related element and registering those with JavaScript afterwards:
+
+```html
+<img
+	src="simpleimage.jpg?loading=lazy&image-width=250&image-height=150"
+	loading="lazy"
+	alt=""
+	width="250"
+	height="150"
+	is="loading-image"
+/>
+```
+
+```javascript
+import loadingAttributePolyfill from "loading-attribute-polyfill-with-serviceworker";
+
+// See https://html.spec.whatwg.org/multipage/indices.html#element-interfaces
+// for the list of other DOM interfaces.
+class LoadingImages extends HTMLImageElement {
+	constructor() {
+		super(); // Always call super() first in the constructor.
+		// Call for preparing the sample image element included the latest dynamically inserted
+		loadingAttributePolyfill.prepareElement(this);
+	}
+}
+
+customElements.define("loading-image", LoadingImages, { extends: "img" });
+```
+
+compare to the code within [demo/loading-attribute-polyfill.custom-builtin-extend.image.js](demo/loading-attribute-polyfill.custom-builtin-extend.image.js) (or [demo/loading-attribute-polyfill.custom-builtin-extend.iframe.js](demo/loading-attribute-polyfill.custom-builtin-extend.iframe.js) for iframe elements).
+
+In case that you even also would like to support Safari / WebKit browsers, you'll need a polyfill as this engine doesn't support that part of the Custom Elements standard so far: <https://www.npmjs.com/package/@ungap/custom-elements>
 
 ## Demo
 
