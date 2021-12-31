@@ -39,6 +39,8 @@ You may optionally load via NPM or Bower:
     $ npm install loading-attribute-polyfill-with-serviceworker
     $ bower install loading-attribute-polyfill-with-serviceworker
 
+## Integration
+
 Include one of the provided JavaScript files depending on your setup plus the CSS file:
 
 ```html
@@ -52,7 +54,11 @@ or e.g. within JS
 import loadingAttributePolyfill from "node_modules/loading-attribute-polyfill-with-serviceworker/dist/loading-attribute-polyfill-with-serviceworker.module.js";
 ```
 
+### Additional information on your image and document (iframe) references
+
 Afterwards, you need to add a query to all of your `<img>` (`?loading=lazy&image-width=250&image-height=150`) and `<iframe>` (`?loading=lazy`) HTML tags (in the case of `<picture>` use the complementary `<source>` HTML tags) that you'd like to lazy load. The included `image-width` and `image-height` values should match the `width`- and `height`-attribute values of each asset.
+
+#### Generally set dimensions on your images
 
 Please keep in mind that it's important to even also include `width` and `height` attributes on `<img>` HTML tags, as the browser could determine the aspect ratio via those two attributes values being set (even if you overwrite them via CSS), compare to the great work by Jen Simmons on this topic, e.g. within these articles <https://css-tricks.com/do-this-to-improve-image-loading-on-your-website/> (with video) or <https://css-tricks.com/what-if-we-got-aspect-ratio-sized-images-by-doing-almost-nothing/>
 
@@ -60,7 +66,25 @@ And please "Avoid lazy-loading images that are in the first visible viewport", c
 
 > You should avoid setting `loading=lazy` for any images that are in the first visible viewport. It is recommended to only add `loading=lazy` to images which are positioned below the fold, if possible.
 
-### Simple image
+### Register a Service Worker
+
+Furthermore you would either need to integrate the code out of [loading-attribute-polyfill.sw.js](loading-attribute-polyfill.sw.js) to your existing [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker) or register one by yourself – please keep in mind that it's very important to add the feature detection to the Service Workers URL within the `navigator.serviceWorker.register` methods parameter, as we're transfering that information on the users enviroments capabilities via this way.
+
+```javascript
+if ("serviceWorker" in navigator) {
+	// Differentiate in between the Service Worker scripts for the different browser capabilities / support
+	navigator.serviceWorker.register(
+		"loading-attribute-polyfill.sw.js?loading-images=" +
+			("loading" in HTMLImageElement.prototype) +
+			"&loading-iframes=" +
+			("loading" in HTMLIFrameElement.prototype)
+	);
+}
+```
+
+### Example code
+
+#### Simple image
 
 ```html
 <img
@@ -72,7 +96,7 @@ And please "Avoid lazy-loading images that are in the first visible viewport", c
 />
 ```
 
-### Image wrapped in a picture tag
+#### Image wrapped in a picture tag
 
 ```html
 <picture>
@@ -99,7 +123,7 @@ And please "Avoid lazy-loading images that are in the first visible viewport", c
 </picture>
 ```
 
-### Image with `srcset`
+#### Image with `srcset`
 
 ```html
 <img
@@ -115,7 +139,7 @@ And please "Avoid lazy-loading images that are in the first visible viewport", c
 />
 ```
 
-### Iframe
+#### Iframe
 
 ```html
 <iframe
