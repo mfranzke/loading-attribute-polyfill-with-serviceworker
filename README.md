@@ -156,7 +156,7 @@ In case that you're dynamically adding HTML elements within the browser, you cou
 
 ```JavaScript
 loadingAttributePolyfill.prepareElement(
-	document.querySelector('main noscript.loading-lazy')
+	document.querySelector('main [loading="lazy"]')
 );
 ```
 
