@@ -24,7 +24,8 @@
     "web development",
     "javascript",
     "html",
-    "service worker"
+    "service worker",
+    "front-end"
   ],
   "bugs": {
     "url": "https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/issues"
