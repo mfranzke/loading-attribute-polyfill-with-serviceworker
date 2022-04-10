@@ -132,22 +132,23 @@ function onPrinting() {
  */
 function prepareElement(mediaTag) {
 	if (
-		(mediaTag.tagName?.toLowerCase() === 'img' &&
-			!capabilities.loading.image) ||
+		(mediaTag.tagName?.toLowerCase() === 'img' && capabilities.loading.image) ||
 		(mediaTag.tagName?.toLowerCase() === 'iframe' &&
-			!capabilities.loading.iframe)
+			capabilities.loading.iframe)
 	) {
-		if (typeof intersectionObserver === 'undefined') {
-			createRegularReference(mediaTag);
-		} else {
-			const observedElement = mediaTag;
+		return false;
+	}
 
-			// Modify the data attribute on the current status
-			observedElement.dataset.loadingLazy = 'registered';
+	if (typeof intersectionObserver === 'undefined') {
+		createRegularReference(mediaTag);
+	} else {
+		const observedElement = mediaTag;
 
-			// Observe the item so that loading could start when it gets close to the viewport
-			intersectionObserver.observe(observedElement);
-		}
+		// Modify the data attribute on the current status
+		observedElement.dataset.loadingLazy = 'registered';
+
+		// Observe the item so that loading could start when it gets close to the viewport
+		intersectionObserver.observe(observedElement);
 	}
 }
 
