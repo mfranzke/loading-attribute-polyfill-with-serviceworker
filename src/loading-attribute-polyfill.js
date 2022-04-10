@@ -132,8 +132,7 @@ function onPrinting() {
  */
 function prepareElement(mediaTag) {
 	if (
-		((mediaTag.tagName?.toLowerCase() === 'img' ||
-			mediaTag.tagName?.toLowerCase() === 'picture') &&
+		(mediaTag.tagName?.toLowerCase() === 'img' &&
 			!capabilities.loading.image) ||
 		(mediaTag.tagName?.toLowerCase() === 'iframe' &&
 			!capabilities.loading.iframe)
