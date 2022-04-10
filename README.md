@@ -185,7 +185,7 @@ loadingAttributePolyfillWithServiceWorker.prepareElement(
 );
 ```
 
-In general we recommend to use the Web Standard of customized builtin elements extends to achieve this, by adding an `is`-attribute to the related element and registering those with JavaScript afterwards:
+In general we recommend to use the Web Standard of customized built-in elements extends to achieve this, by adding an `is`-attribute to the related element and registering those with JavaScript afterwards:
 
 ```html
 <img
