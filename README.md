@@ -47,13 +47,13 @@ The main architectural decision to differentiate from other solutions like [load
 - Service Worker need to get **registered on first page visit**
 - Only works on **same domain** network requests
 
-Whereas the first topic might not be a problem (anymore) on most websites – as this should be the de-facto standard nowadays – the second and third might be acceptable in your context, as this polyfill behaves as a progressive enhancement to provide the expected functionality even for non-supporting browsers both only on seconds pages request and any revisits and for same origin image and contents (iframe) requests even only.
+Whereas the first topic might not be a problem (anymore) on most sites – as this should be the de-facto standard nowadays – the second and third might be acceptable in your context, as this polyfill behaves as a progressive enhancement to provide the expected functionality even for non-supporting browsers both only on seconds pages request and any revisits and for same origin image and contents (iframe) requests even only.
 
 ## Installation
 
 First you'll need to integrate the JavaScript file into your code.
 
-You may optionally load via NPM or Bower:
+You may optionally load via npm or Bower:
 
     $ npm install loading-attribute-polyfill-with-serviceworker
     $ bower install loading-attribute-polyfill-with-serviceworker
@@ -220,7 +220,7 @@ In case that you even also would like to support Safari / WebKit browsers, you'l
 
 ## Demo
 
-See the polyfill in action either by downloading / forking this repo and have a look at `demo/index.html`, or at the hosted demo: <https://mfranzke.github.io/loading-attribute-polyfill-with-serviceworker/demo/>
+See the polyfill in action either by downloading / forking this repository and have a look at `demo/index.html`, or at the hosted demo: <https://mfranzke.github.io/loading-attribute-polyfill-with-serviceworker/demo/>
 
 ## Credits
 
