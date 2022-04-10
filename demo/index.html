@@ -212,7 +212,9 @@
 				Add dynamic image and iframe underneath
 			</button>
 		</main>
+		<!-- The polyfill itself is being included in the following script -->
 		<script type="module" src="index.js"></script>
+		<!-- Register a Service Worker that intercepts the network requests to prevent the images and iframe content being requested -->
 		<script>
 			if ("serviceWorker" in navigator) {
 				// Differentiate in between the Service Worker scripts for the different browser capabilities / support
