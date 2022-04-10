@@ -131,6 +131,7 @@ function onPrinting() {
  * @param {Object} mediaTag image or iframe HTML tag
  */
 function prepareElement(mediaTag) {
+	// Prevent the preparation of the provided HTML tag if the capability is supported by the browser
 	if (
 		(mediaTag.tagName?.toLowerCase() === 'img' && capabilities.loading.image) ||
 		(mediaTag.tagName?.toLowerCase() === 'iframe' &&
