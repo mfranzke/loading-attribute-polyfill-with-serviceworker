@@ -19,7 +19,9 @@
 		"polyfill",
 		"web development",
 		"javascript",
-		"html"
+		"html",
+		"service worker",
+		"front-end"
 	],
 	"licenses": [
 		{
@@ -36,6 +38,9 @@
 		".github",
 		".gitattributes",
 		".prettierignore",
-		".htmlvalidate.json"
+		".htmlvalidate.json",
+		".browserslistrc",
+		".vscode",
+		"renovate.json"
 	]
 }
