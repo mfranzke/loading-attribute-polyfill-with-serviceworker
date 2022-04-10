@@ -9,7 +9,7 @@
  * Elsewhere the functionality gets emulated with the support of Service Worker.
  */
 
-import './loading-attribute-polyfill.css';
+import './loading-attribute-polyfill-with-serviceworker.css';
 
 const config = {
 	intersectionObserver: {
@@ -181,8 +181,8 @@ if (/comp|inter/.test(document.readyState)) {
 	});
 }
 
-const loadingAttributePolyfill = {
+const loadingAttributePolyfillWithServiceWorker = {
 	prepareElement,
 };
 
-export default loadingAttributePolyfill;
+export default loadingAttributePolyfillWithServiceWorker;

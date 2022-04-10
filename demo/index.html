@@ -44,7 +44,10 @@
 				height: auto;
 			}
 		</style>
-		<link rel="stylesheet" href="../dist/loading-attribute-polyfill.css" />
+		<link
+			rel="stylesheet"
+			href="../dist/loading-attribute-polyfill-with-serviceworker.css"
+		/>
 
 		<!-- Include polyfill for custom elements and built-in extends support -->
 		<script
@@ -219,7 +222,7 @@
 			if ("serviceWorker" in navigator) {
 				// Differentiate in between the Service Worker scripts for the different browser capabilities / support
 				navigator.serviceWorker.register(
-					"../loading-attribute-polyfill.sw.js?loading-images=" +
+					"../loading-attribute-polyfill-with-serviceworker.sw.js?loading-images=" +
 						("loading" in HTMLImageElement.prototype) +
 						"&loading-iframes=" +
 						("loading" in HTMLIFrameElement.prototype)
