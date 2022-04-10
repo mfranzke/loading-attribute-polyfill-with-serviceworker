@@ -1,0 +1,1 @@
+{"version":3,"sources":["loading-attribute-polyfill-with-serviceworker.css"],"names":[],"mappings":"AAAA,mBACC,oBACD","file":"loading-attribute-polyfill-with-serviceworker.css","sourcesContent":["img[data-lazy-src] {\n\twill-change: contents;\n}\n"]}
