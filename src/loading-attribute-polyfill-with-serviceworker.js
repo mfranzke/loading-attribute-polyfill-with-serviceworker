@@ -142,13 +142,11 @@ function prepareElement(mediaTag) {
 	if (typeof intersectionObserver === 'undefined') {
 		createRegularReference(mediaTag);
 	} else {
-		const observedElement = mediaTag;
-
 		// Modify the data attribute on the current status
-		observedElement.dataset.loadingLazy = 'registered';
+		mediaTag.dataset.loadingLazy = 'registered';
 
 		// Observe the item so that loading could start when it gets close to the viewport
-		intersectionObserver.observe(observedElement);
+		intersectionObserver.observe(mediaTag);
 	}
 }
 
