@@ -41,7 +41,7 @@ The polyfill was designed with the following concepts kept in mind:
 
 ## Prerequisites
 
-The main architectural decision to differentiate from other solutions like <https://github.com/mfranzke/loading-attribute-polyfill> is that we're using Service Worker to intercept the image and iframe contents network requests. This comes with some aspects that are important to mention, that you might want to evaluate on your requirements and technical context.
+The main architectural decision to differentiate from other solutions like [loading-attribute-polyfill](https://github.com/mfranzke/loading-attribute-polyfill) is that we're using **Service Worker** to intercept the image and iframe contents network requests. This comes with some aspects that are important to mention, that you might want to evaluate on your requirements and technical context.
 
 - Service Workers only run over **HTTPS**, for security reasons
 - Service Worker need to get **registered on first page visit**
@@ -222,7 +222,24 @@ Credits for the initial kickstarter / script to @Sora2455 for better expressing 
 
 ## Tested with
 
-_tbd_
+- Mac
+
+  - Safari 14, macOS 11 (via CrossBrowserTesting)
+  - Mozilla Firefox _latest_, macOS 10.14 (manually, localhost)
+  <!-- - macOS 10.14, Safari 12 (via CrossBrowserTesting)
+  - macOS 10.13, Safari 11 (via CrossBrowserTesting) -->
+
+- iOS
+
+  - Mobile Safari 12.0, iPad 6th Generation Simulator (manually)
+
+- Windows
+
+  - Google Chrome _latest_, Windows 10 (via CrossBrowserTesting)
+  - Mozilla Firefox _latest_, Windows 10 (via CrossBrowserTesting)
+  - Microsoft Edge version 18, Windows 10 (manually, localhost)
+  - Microsoft Internet Explorer version 11, Windows 10 (via CrossBrowserTesting)
+  - Internet Explorer 9.0.8112.16421, Windows 7 SP1 (manually, localhost)
 
 ### Big Thanks
 
