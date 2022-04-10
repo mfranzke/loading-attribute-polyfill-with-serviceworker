@@ -30,7 +30,7 @@ Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy
 - SEO & crawlers: the image and iframe contents aren't being hidden from crawlers that aren't capable of scrolling.
 - JavaScript framework friendly\*
 
-\*As some JavaScript frameworks would like to "own the DOM", it's not a good practice to try to manipulate the HTML content by our polyfill. That for this solution hooks into the network connection (by a Service Worker that you would need to register) to intercept the image and iframe contents requests.
+\*As some JavaScript frameworks would like to "own the DOM", it's not a good practice to try to manipulate the HTML content by our polyfill. That for this solution hooks into the network connection (by a Service Worker that you would need to register) to intercept the image and iframe contents network requests. This gives us much more flexibility on the usage contexts, but has some drawbacks, see section ["Prerequisites"](#prerequisites).
 
 ## Core concepts
 
@@ -38,6 +38,16 @@ The polyfill was designed with the following concepts kept in mind:
 
 - dependency-free
 - using JavaScript with graceful degradation
+
+## Prerequisites
+
+The main architectural decision to differentiate from other solutions like <https://github.com/mfranzke/loading-attribute-polyfill> is that we're using Service Worker to intercept the image and iframe contents network requests. This comes with some aspects that are important to mention, that you might want to evaluate on your requirements and technical context.
+
+- Service Workers only run over **HTTPS**, for security reasons
+- Service Worker need to get **registered on first page visit**
+- Only works on **same domain** network requests
+
+Whereas the first topic might not be a problem (anymore) on most websites – as this should be the de-facto standard nowadays – the second and third might be acceptable in your context, as this polyfill behaves as a progressive enhancement to provide the expected functionality even for non-supporting browsers both only on seconds pages request and any revisits and for same origin image and contents (iframe) requests even only.
 
 ## Installation
 
