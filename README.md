@@ -1,16 +1,22 @@
 # loading="lazy" attribute polyfill with Service Worker
 
-Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute, depending on Service Worker (kudos for that [great idea](https://github.com/mfranzke/loading-attribute-polyfill/issues/88#issuecomment-649723103) to [@garygreen](https://github.com/garygreen) !!!)
-
 [![MIT license](https://img.shields.io/npm/l/loading-attribute-polyfill-with-serviceworker.svg "license badge")](https://opensource.org/licenses/mit-license.php)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/loading-attribute-polyfill-with-serviceworker)](https://bundlephobia.com/result?p=loading-attribute-polyfill-with-serviceworker)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4f4cc692565d425c82860d18a11f17d4)](https://www.codacy.com/gh/mfranzke/loading-attribute-polyfill-with-serviceworker/dashboard)
+[![Known Vulnerabilities](https://snyk.io/test/github/mfranzke/loading-attribute-polyfill-with-serviceworker/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mfranzke/loading-attribute-polyfill-with-serviceworker?targetFile=package.json)
+[![CodeQL](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/actions/workflows/codeql-analysis.yml)
 [![GitHub Super-Linter](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/mfranzke/loading-attribute-polyfill-with-serviceworker/actions/workflows/linter.yml)
 [![dependencies Status](https://david-dm.org/mfranzke/loading-attribute-polyfill-with-serviceworker/status.svg "Count of dependencies")](https://david-dm.org/mfranzke/loading-attribute-polyfill-with-serviceworker "loading-attribute polyfill – on david-dm")
+[![loading-attribute-polyfill on Npmjs](https://img.shields.io/npm/v/loading-attribute-polyfill-with-serviceworker.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/loading-attribute-polyfill-with-serviceworker 'loading="lazy"-attribute polyfill – on NPM')
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Join the chat at https://gitter.im/loading-attribute-polyfill-with-serviceworker/community](https://badges.gitter.im/loading-attribute-polyfill-with-serviceworker/community.svg)](https://gitter.im/loading-attribute-polyfill-with-serviceworker/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+
+Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy loading / the awesome loading='lazy'-attribute, depending on Service Worker (kudos for that [great idea](https://github.com/mfranzke/loading-attribute-polyfill/issues/88#issuecomment-649723103) to [@garygreen](https://github.com/garygreen) !!!)
 
 - Released under the MIT license
 - Made in Germany. And supported by so many great people from all over this planet - see "Credits" accordingly.
@@ -22,6 +28,9 @@ Fast and lightweight dependency-free vanilla JavaScript polyfill for native lazy
 - Web standards: supports the standard `loading="lazy"` attribute on `img` and `iframe` elements
 - Performance: it's based on highly efficient, best practice code.
 - SEO & crawlers: the image and iframe contents aren't being hidden from crawlers that aren't capable of scrolling.
+- JavaScript framework friendly\*
+
+\*As some JavaScript frameworks would like to "own the DOM", it's not a good practice to try to manipulate the HTML content by our polyfill. That for this solution hooks into the network connection (by a Service Worker that you would need to register) to intercept the image and iframe contents requests.
 
 ## Core concepts
 
@@ -51,7 +60,7 @@ Include one of the provided JavaScript files depending on your setup plus the CS
 or e.g. within JS
 
 ```js
-import loadingAttributePolyfill from "node_modules/loading-attribute-polyfill-with-serviceworker/dist/loading-attribute-polyfill-with-serviceworker.module.js";
+import loadingAttributePolyfill from "node_modules/loading-attribute-polyfill-with-serviceworker/dist/loading-attribute-polyfill.module.js";
 ```
 
 ### Additional information on your image and document (iframe) references
