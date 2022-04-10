@@ -17,20 +17,24 @@
 					Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 					"Segoe UI Symbol";
 			}
+
 			.scrolling-advice span {
 				display: block;
 				text-align: center;
 				margin-top: 1rem;
 				font-size: 2rem;
 			}
+
 			/* Defing the header to be two screen sizes height at minimum to ensure that the images within the main section are being loaded lazy */
 			body > header {
 				min-height: 200vh;
 			}
+
 			body > main img,
 			body > main iframe {
 				margin: 1rem;
 			}
+
 			/* dynamically added images */
 			.add-dynamic-content ~ div {
 				min-height: 200vh;
@@ -53,6 +57,7 @@
 			crossorigin="anonymous"
 		></script>
 	</head>
+
 	<body>
 		<header>
 			<h1>
@@ -126,7 +131,7 @@
 								"doesn't support the native loading lazy capabilities"
 							);
 						}
-					</script></strong
+					</script> </strong
 				>)
 				<span aria-hidden="true">⬇</span>
 			</p>
