@@ -8,6 +8,13 @@ And the commit messages from [Conventional Commits](https://conventionalcommits.
 
 ## [Unreleased]
 
+## [1.0.0-1] - 2022-04-10
+
+### Changed
+
+- **BREAKING CHANGE**: Renamed the published `css` and `js` files according to the package name
+- Removed unnecessary code part
+
 ## [1.0.0-0] - 2022-04-10
 
 It's the [olders brothers polyfills](https://github.com/mfranzke/loading-attribute-polyfill) birthday (okay, it has been yesterday), so I did a lot of housekeeping, so that's a perfect timing to release this polyfill with another concept (using Service Worker to prevent loading images and iframes contents). Check it out and evaluate its usage in your project.
