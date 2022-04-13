@@ -8,6 +8,12 @@ And the commit messages from [Conventional Commits](https://conventionalcommits.
 
 ## [Unreleased]
 
+## [1.0.0-2] - 2022-04-13
+
+### Changes
+
+- Code simplifications
+
 ## [1.0.0-1] - 2022-04-10
 
 ### Changed
