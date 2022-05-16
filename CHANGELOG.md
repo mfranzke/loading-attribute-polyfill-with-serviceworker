@@ -8,6 +8,18 @@ And the commit messages from [Conventional Commits](https://conventionalcommits.
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-05-15
+
+This is our stable 1.0 release, after we did further testing and received feedback from the community.
+
+### Added
+
+- `browser` field to `package.json` instead of `main` entry again
+
+### Changed
+
+- Updated `devDependencies`
+
 ## [1.0.0-2] - 2022-04-13
 
 ### Changes
