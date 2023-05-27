@@ -109,7 +109,7 @@ function onIntersection(entries, observer) {
  * Handle printing the page
  */
 function onPrinting() {
-	if (typeof window.matchMedia === 'undefined') {
+	if (window.matchMedia === undefined) {
 		return;
 	}
 
@@ -140,7 +140,7 @@ function prepareElement(mediaTag) {
 		return false;
 	}
 
-	if (typeof intersectionObserver === 'undefined') {
+	if (intersectionObserver === undefined) {
 		createRegularReference(mediaTag);
 	} else {
 		// Modify the data attribute on the current status
