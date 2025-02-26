@@ -248,9 +248,7 @@ Credits for the initial kickstarter / script to @Sora2455 for better expressing 
 
 ### Big Thanks
 
-Cross-browser testing platform provided by [CrossBrowserTesting](https://crossbrowsertesting.com)
-
-[![CrossBrowserTesting](https://static1.smartbear.co/crossbrowsertesting/media/site/cbt-smartbear-logo.svg "CrossBrowserTesting")](https://crossbrowsertesting.com)
+[![BrowserStack](https://avatars.githubusercontent.com/u/1119453?s=16&v=4 "")]([https://browserstack.com](https://www.browserstack.com/)) Cross-browser testing platform provided by [BrowserStack](https://www.browserstack.com/)
 
 ## Things to keep in mind
 
